@@ -1,0 +1,62 @@
+### Find All Students
+GET http://localhost:3000/students
+
+### Find All Tutorials
+GET http://localhost:3000/tutorials
+### Find All Students by pagination
+GET http://localhost:3000/students/paging/1/4
+
+
+### Find one student by id
+GET http://localhost:3000/students/1
+
+### Create a new Student
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+    "firstName": "chanthi",
+    "lastName": "lach",
+    "email": "chanthi@gmail.com",
+    "address": "Phnom Penh"
+}
+
+### Create a new Tutorial
+POST http://localhost:3000/tutorials
+Content-Type: application/json
+
+{
+    "title": "Learn HTML, CSS, and JavaScript",
+    "type": "Frontend",
+    "description": "Learn HTML, CSS, and JavaScript for beginning and end",
+    "published": false
+}
+
+### create user with profile 
+POST http://localhost:3000/User
+Content-Type: application/json
+
+{
+  "email": "Sokheng@gmail.com",
+  "name": "Sokheng Lach",
+  "bio": "sokheng's bio"
+}
+
+### create user with post
+POST http://localhost:3000/User
+Content-Type: application/json
+
+{
+  "email": "vordin@gmail.com",
+  "name": "vordin En",
+  "posts": [
+    { "title": "Post 1",
+     "content": "Content 1" 
+     },
+    { "title": "Post 2", 
+    "content": "Content 2" 
+    }
+  ]
+}
+
+
