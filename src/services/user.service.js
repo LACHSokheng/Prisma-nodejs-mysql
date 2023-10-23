@@ -28,35 +28,25 @@ const createUserWithProfile = async (req, res) => {
   console.error();
 };
 
-// create endpoint relationship between user and Post
-const createUserWithPosts = async (req, res) => {
-  const { title, email, name, posts } = req.body;
+const getAllUser = async (req, res) => {
+  const result = await prisma.user.findMany();
+  res.send({message: "Successfully to find all users", data: result});
+}
 
-  // Create a User and associated Posts
-  const userWithPosts = await prisma.user.create({
-    data: {
-      email,
-      name,
-      title,
-      posts: {
-        create: posts.map((post) => {
-          return {
-            title: post.title,
-            content: post.content,
-          };
-        }),
-      },
-    },
-    include: {
-      posts: true,
-    },
-  });
-
-  res.send({
-    message: "Successfully created user with posts 🦄🥰",
-    data: userWithPosts,
-  });
+// Get by id from profile table
+const getUserbyId = async (req, res) => {
+  const id = parseInt(req.params.id);
+  try {
+    const result = await prisma.User.findUnique({
+      where: { id: id },
+    });
+    res.send({ message: "Successfully User get by id👍😘", data: result });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ error: "Failed to Get User by id 🥺😥", details: error });
+  }
 };
 
-
-module.exports = { createUserWithProfile, createUserWithPosts };
+module.exports = {getAllUser, createUserWithProfile, getUserbyId };

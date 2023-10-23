@@ -1,6 +1,15 @@
 ### Find All Students
 GET http://localhost:3000/students
 
+### Find All Students
+GET http://localhost:3000/Profile/1
+
+### Find All Users
+GET http://localhost:3000/User/1
+
+### Find All Users
+GET http://localhost:3000/Post/1
+
 ### Find All Tutorials
 GET http://localhost:3000/tutorials
 ### Find All Students by pagination
@@ -37,9 +46,9 @@ POST http://localhost:3000/User
 Content-Type: application/json
 
 {
-  "email": "Sokheng@gmail.com",
-  "name": "Sokheng Lach",
-  "bio": "sokheng's bio"
+  "email": "sokhour5@gmail.com",
+  "name": "sokhour Lach",
+  "bio": "sokhour's bio"
 }
 
 ### create user with post
@@ -47,10 +56,10 @@ POST http://localhost:3000/User
 Content-Type: application/json
 
 {
-  "email": "vordin@gmail.com",
-  "name": "vordin En",
+  "email": "kaka10@gmail.com",
+  "name": "kaka Lo",
   "posts": [
-    { "title": "Post 1",
+    { "title": "Java Tutorial",
      "content": "Content 1" 
      },
     { "title": "Post 2", 

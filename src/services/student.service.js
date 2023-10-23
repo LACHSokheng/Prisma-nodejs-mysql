@@ -11,7 +11,7 @@ const createStudent = async (req, res) => {
       address,
     },
   });
-  res.send({ message: "Successfully created 🦄🥰", data: result });
+  res.send({ message: "Successfully created 👍🦄🥰", data: result });
 };
 
 const getAllStudents = async (req, res) => {
@@ -40,7 +40,7 @@ const getByStudentId = async (req, res) => {
   const result = await prisma.students.findFirst({
     where: { id },
   });
-  res.send({ message: "Successfully get all 🦄🥰", data: result });
+  res.send({ message: "Successfully get by id 🦄🥰", data: result });
 };
 
 module.exports = {
