@@ -2,25 +2,25 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const createPostForUser = async (req, res) => {
-  const {title, content } = req.body;
-
-  // Create a Post associated with a specific User
-  const result = await prisma.post.create({
-    data: {
-      title,
-      content,
-      author: {
-        connect: {
-          id: user.id,
-        },
+  const { title, content,authorId } = req.body;
+  try {
+    // Create a Post associated with a specific User
+    const result = await prisma.post.create({
+      data: {
+        title,
+        content,
+        author: { connect: { id: authorId } }
       },
-    },
-  });
+    });
 
-  res.send({
-    message: "Successfully created a post for the user 👍🥰",
-    data: result,
-  });
+    res.send({
+      message: "Successfully created a post for the user 👍🥰",
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+    res.send({ message: "Error creating post for user" });
+  }
 };
 
 const getPostById = async (req, res) => {
@@ -39,6 +39,7 @@ const getPostById = async (req, res) => {
   }
 };
 
+// get all posts
 const getAllPost = async (req, res) => {
   const result = await prisma.Post.findMany();
   res.send({ message: "Successfully to find all users 🦄🥰", data: result });
@@ -74,10 +75,10 @@ const deletePost = async (req, res) => {
     res.send({ message: "Failed to delete post 😪🥹", error: err });
   }
 };
-module.exports = { 
-  createPostForUser, 
-  getAllPost, 
-  getPostById, 
+module.exports = {
+  createPostForUser,
+  getAllPost,
+  getPostById,
   updatePost,
-  deletePost 
+  deletePost,
 };

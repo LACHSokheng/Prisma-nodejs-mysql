@@ -67,9 +67,25 @@ const createProfile = async (req, res) => {
   }
 };
 
+const deleteProfile = async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    const result = await prisma.profile.delete({
+      where: {id},
+    });
+    res.send({ message: "Successfully delete profile", data: result});
+
+  }catch (err) {
+    console.error("[Profile/ Delete", err)
+    res.send({message: "Failed to delete profile" });
+  }
+}
+
 module.exports = {
   getAllProfile,
   getByIdProfile,
   updateProfile,
   createProfile,
+  deleteProfile
 };
