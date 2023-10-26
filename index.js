@@ -13,9 +13,9 @@ const profileRoutes = require("./src/controllers/profile.controller");
 app.use("/students", studentRoutes);
 app.use("/tutorials", tutorialRoutes);
 
-app.use("/User", userRoutes);
-app.use("/Post", postRoutes);
-app.use("/Profile", profileRoutes);
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
+app.use("/profiles", profileRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome");

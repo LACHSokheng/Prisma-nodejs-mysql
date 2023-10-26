@@ -5,6 +5,8 @@ const service = require('..//services/profile.service')
 
 router.get('/', service.getAllProfile)
 router.get('/:id', service.getByIdProfile)
+router.post('/', service.createProfile)
+router.put('/:id', service.updateProfile)
 
 
 module.exports = router;

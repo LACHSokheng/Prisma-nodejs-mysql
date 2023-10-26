@@ -1,24 +1,4 @@
-### Find All Students
-GET http://localhost:3000/students
-
-### Find All Students
-GET http://localhost:3000/Profile/1
-
-### Find All Users
-GET http://localhost:3000/User/1
-
-### Find All Users
-GET http://localhost:3000/Post/1
-
-### Find All Tutorials
-GET http://localhost:3000/tutorials
-### Find All Students by pagination
-GET http://localhost:3000/students/paging/1/4
-
-
-### Find one student by id
-GET http://localhost:3000/students/1
-
+############## Student table 🧑‍🎓👩‍🎓🥰##############
 ### Create a new Student
 POST http://localhost:3000/students
 Content-Type: application/json
@@ -29,7 +9,18 @@ Content-Type: application/json
     "email": "chanthi@gmail.com",
     "address": "Phnom Penh"
 }
+### Find All Students
+GET http://localhost:3000/students
 
+### Find one student by id
+GET http://localhost:3000/students/1
+### Find All Students by pagination
+GET http://localhost:3000/students/paging/1/4
+
+
+
+
+############## Tutorial table📕📖 ##############
 ### Create a new Tutorial
 POST http://localhost:3000/tutorials
 Content-Type: application/json
@@ -41,23 +32,21 @@ Content-Type: application/json
     "published": false
 }
 
-### create user with profile 
-POST http://localhost:3000/User
-Content-Type: application/json
+### Find All Tutorials
+GET http://localhost:3000/tutorials
 
-{
-  "email": "sokhour5@gmail.com",
-  "name": "sokhour Lach",
-  "bio": "sokhour's bio"
-}
 
+
+
+
+############## User table😘👥🥰 ##############
 ### create user with post
-POST http://localhost:3000/User
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "email": "kaka10@gmail.com",
-  "name": "kaka Lo",
+  "email": "sokheng.dev@gmail.com",
+  "name": "sokheng",
   "posts": [
     { "title": "Java Tutorial",
      "content": "Content 1" 
@@ -67,5 +56,61 @@ Content-Type: application/json
     }
   ]
 }
+
+### create user with profile 
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "sokhour25@gmail.com",
+  "name": "sokhour Lach",
+  "bio": "sokhour's bio"
+}
+
+### Find All Users
+GET http://localhost:3000/users
+
+### Delete user
+DELETE http://localhost:3000/users/16
+
+
+############## Post table 🧠🤩🤗##############
+
+### Find All posts
+GET http://localhost:3000/posts
+
+### update post
+PUT http://localhost:3000/posts/2
+Content-Type: application/json
+
+{
+  "title": "Learn CSS",
+  "content": "This is the content of the new post",
+  "published": true,
+  "authorId": 1
+}
+### create post
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "My new post",
+  "content": "This is the content of my new post."
+}
+
+
+
+############## Profile table 🦄🤩😈##############
+### create profile
+POST http://localhost:3000/profiles
+Content-Type: application/json
+
+{
+  "bio": "This is the bio of the new profile.",
+  "userId": 24
+}
+
+### Find All profiles
+GET http://localhost:3000/profiles
 
 
