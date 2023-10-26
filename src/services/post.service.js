@@ -2,24 +2,32 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const createPostForUser = async (req, res) => {
-  const { title, content,authorId } = req.body;
-  try {
-    // Create a Post associated with a specific User
-    const result = await prisma.post.create({
-      data: {
-        title,
-        content,
-        author: { connect: { id: authorId } }
-      },
-    });
+  const { title, content, authorId } = req.body; // Ensure you have 'authorId' in the request body
 
-    res.send({
-      message: "Successfully created a post for the user 👍🥰",
-      data: result,
-    });
+  try {
+    // Check if the specified user (author) exists
+    const author = await prisma.user.findUnique({ where: { id: authorId } });
+
+    if (!author) {
+      res.status(404).json({ message: "User not found" });
+    } else {
+      // Create a Post associated with the specific User
+      const result = await prisma.post.create({
+        data: {
+          title,
+          content,
+          authorId,
+        },
+      });
+
+      res.status(201).json({
+        message: "Successfully created a post for the user 👍🥰",
+        data: result,
+      });
+    }
   } catch (err) {
     console.error(err);
-    res.send({ message: "Error creating post for user" });
+    res.status(500).json({ message: "Error creating post for user 😪🥹" });
   }
 };
 
@@ -66,10 +74,11 @@ const deletePost = async (req, res) => {
   const id = parseInt(req.params.id);
 
   try {
-    const result = await prisma.Post.delete({
-      while: { id },
+    const result = await prisma.post.delete({
+      where: { id },
     });
     res.send({ message: "Successfully deleted post ", data: result });
+
   } catch (err) {
     console.error(err);
     res.send({ message: "Failed to delete post 😪🥹", error: err });
